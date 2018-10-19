@@ -4,6 +4,7 @@ import { ISchema } from "@xogeny/ts-schema";
 
 export async function validateArguments(args: string[], schema: ISchema) {
     const obj = parser(args).argv;
+    console.log(JSON.stringify(obj));
     const validator = new ajv();
     await validator.validate(schema, obj);
     if (validator.errors) {

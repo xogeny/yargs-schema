@@ -20,6 +20,10 @@
   version "23.3.5"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-23.3.5.tgz#870a1434208b60603745bfd214fc3fc675142364"
 
+"@types/node@^10.12.0":
+  version "10.12.0"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
+
 "@types/yargs-parser@^11.0.0":
   version "11.0.0"
   resolved "https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-11.0.0.tgz#514933c83ec38b8e06b8c9e5ffff637f20474f2e"
