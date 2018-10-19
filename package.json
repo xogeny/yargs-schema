@@ -5,7 +5,7 @@
     "main": "lib/src/index.js",
     "typings": "lib/src/index.d.ts",
     "scripts": {
-        "prepublish": "tsc && jest",
+        "prepare": "tsc && jest",
         "compile": "tsc",
         "test": "jest"
     },
