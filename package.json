@@ -1,6 +1,6 @@
 {
     "name": "@xogeny/yargs-schema",
-    "version": "1.0.0-rc1",
+    "version": "1.0.0-rc2",
     "description": "Very simple package to formulate command line arguments from a JSON Schema",
     "main": "lib/src/index.js",
     "typings": "lib/src/index.d.ts",
