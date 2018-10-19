@@ -10,7 +10,7 @@ describe("Test processing of JSON schema into argument specification", () => {
         expect(result).toEqual({ _: ["task"], foo: 45 });
     });
     it("should validate argument", async () => {
-        const errors = await validateArguments(["--foo", "45", "--bar.y", "7"], {
+        const { result, errors } = await validateArguments(["--foo", "45", "--bar.y", "7"], {
             properties: {
                 foo: { type: "number" },
                 bar: {
@@ -23,9 +23,10 @@ describe("Test processing of JSON schema into argument specification", () => {
             },
         });
         expect(errors).toEqual([]);
+        expect(result).toEqual({ _: [], foo: 45, bar: { y: 7 } });
     });
     it("should flag missing parameter", async () => {
-        const errors = await validateArguments(["--foo", "45", "--bar.x", "7"], {
+        const { result, errors } = await validateArguments(["--foo", "45", "--bar.x", "7"], {
             properties: {
                 foo: { type: "number" },
                 bar: {
@@ -38,9 +39,10 @@ describe("Test processing of JSON schema into argument specification", () => {
             },
         });
         expect(errors).toEqual(["'.bar' should have required property 'y' (required)"]);
+        expect(result).toEqual(undefined);
     });
     it("should flag extra positional argument", async () => {
-        const errors = await validateArguments(["positional", "--foo", "45", "--bar.y", "7"], {
+        const { errors } = await validateArguments(["positional", "--foo", "45", "--bar.y", "7"], {
             properties: {
                 foo: { type: "number" },
                 bar: {
@@ -56,7 +58,7 @@ describe("Test processing of JSON schema into argument specification", () => {
         expect(errors).toEqual(["'<root>' should NOT have additional properties (additionalProperties)"]);
     });
     it("should validate positional argument", async () => {
-        const errors = await validateArguments(["positional", "--foo", "45", "--bar.y", "7"], {
+        const { result, errors } = await validateArguments(["positional", "--foo", "45", "--bar.y", "7"], {
             properties: {
                 foo: { type: "number" },
                 bar: {
@@ -71,9 +73,10 @@ describe("Test processing of JSON schema into argument specification", () => {
             additionalProperties: false,
         });
         expect(errors).toEqual([]);
+        expect(result).toEqual({ _: ["positional"], foo: 45, bar: { y: 7 } });
     });
     it("should flag second positional argument", async () => {
-        const errors = await validateArguments(["positional", "also", "--foo", "45", "--bar.y", "7"], {
+        const { errors } = await validateArguments(["positional", "also", "--foo", "45", "--bar.y", "7"], {
             properties: {
                 foo: { type: "number" },
                 bar: {
@@ -89,7 +92,7 @@ describe("Test processing of JSON schema into argument specification", () => {
         });
         expect(errors).toEqual(["'._' should NOT have more than 1 items (maxItems)"]);
     });
-    it("should validate", async () => {
+    it("should validate a simple schema", async () => {
         const ajv = new Ajv();
         var schema = {
             properties: {
