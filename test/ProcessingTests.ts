@@ -37,7 +37,23 @@ describe("Test processing of JSON schema into argument specification", () => {
                 },
             },
         });
-        expect(errors).toEqual([".bar should have required property 'y' (required)"]);
+        expect(errors).toEqual(["'.bar' should have required property 'y' (required)"]);
+    });
+    it("should flag missing parameter", async () => {
+        const errors = await validateArguments(["positional", "--foo", "45", "--bar.y", "7"], {
+            properties: {
+                foo: { type: "number" },
+                bar: {
+                    type: "object",
+                    properties: {
+                        y: { type: "number" },
+                    },
+                    required: ["y"],
+                },
+            },
+            additionalProperties: false,
+        });
+        expect(errors).toEqual(["'<root>' should NOT have additional properties (additionalProperties)"]);
     });
     it("should validate", async () => {
         const ajv = new Ajv();
