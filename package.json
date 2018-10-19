@@ -1,33 +1,37 @@
 {
-  "name": "yargs-schema",
-  "version": "0.1.0",
-  "description": "Formulate command line arguments from a JSON Schema",
-  "main": "lib/src/index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "keywords": [
-    "JSON",
-    "Schema",
-    "arguments",
-    "cli",
-    "yargs"
-  ],
-  "author": "Michael M. Tiller",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^23.3.5",
-    "@types/node": "^10.12.0",
-    "@types/yargs": "^12.0.1",
-    "@types/yargs-parser": "^11.0.0",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.4",
-    "typescript": "^3.1.3"
-  },
-  "dependencies": {
-    "@xogeny/ts-schema": "^0.1.0",
-    "ajv": "^6.5.4",
-    "yargs": "^12.0.2",
-    "yargs-parser": "^11.0.0"
-  }
+    "name": "@xogeny/yargs-schema",
+    "version": "1.0.0-rc1",
+    "description": "Very simple package to formulate command line arguments from a JSON Schema",
+    "main": "lib/src/index.js",
+    "typings": "lib/src/index.d.ts",
+    "scripts": {
+        "prepublish": "tsc && jest",
+        "compile": "tsc",
+        "test": "jest"
+    },
+    "keywords": [
+        "JSON",
+        "Schema",
+        "arguments",
+        "cli",
+        "yargs"
+    ],
+    "author": "Michael M. Tiller",
+    "license": "MIT",
+    "private": false,
+    "devDependencies": {
+        "@types/jest": "^23.3.5",
+        "@types/node": "^10.12.0",
+        "@types/yargs": "^12.0.1",
+        "@types/yargs-parser": "^11.0.0",
+        "jest": "^23.6.0",
+        "ts-jest": "^23.10.4",
+        "typescript": "^3.1.3"
+    },
+    "dependencies": {
+        "@xogeny/ts-schema": "^0.1.0",
+        "ajv": "^6.5.4",
+        "yargs": "^12.0.2",
+        "yargs-parser": "^11.0.0"
+    }
 }
